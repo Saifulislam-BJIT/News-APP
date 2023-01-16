@@ -8,7 +8,6 @@ import retrofit2.http.GET
 
 private const val BASE_URL = "https://newsapi.org/v2/"
 private const val TOKEN = "9d68e0d1f113454cb2e1e6ad604ac096"
-private const val BASE_URL = "https://android-kotlin-fun-mars-server.appspot.com"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -24,6 +23,6 @@ object MarsApi {
 }
 
 interface NewsApiService {
-    @GET("photos")
+    @GET("top-headlines")
     suspend fun getPhotos() : String
 }
