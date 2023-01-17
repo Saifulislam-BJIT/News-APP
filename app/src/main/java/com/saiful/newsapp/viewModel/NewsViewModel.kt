@@ -4,34 +4,36 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.saiful.newsapp.database.NewsDatabase
 import com.saiful.newsapp.model.NewsArticle
-import com.saiful.newsapp.network.MarsApi
-import com.saiful.newsapp.repository.NewsRepository
-import kotlinx.coroutines.Dispatchers
+import com.saiful.newsapp.network.NewsApi
 import kotlinx.coroutines.launch
 
 class NewsViewModel (application: Application): AndroidViewModel(application) {
-    val repository: NewsRepository
+//    val repository: NewsRepository
     val result = mutableListOf<NewsArticle>()
 
-    init {
-        val newsDao = NewsDatabase.getDatabase(application).getNews()
-        repository = NewsRepository(newsDao)
-        getTopHeadlines()
-        addNews(result.toList())
-    }
+//    init {
+//        val newsDao = NewsDatabase.getDatabase(application).getNews()
+//        repository = NewsRepository(newsDao)
+//        getTopHeadlines()
+//        addNews(result.toList())
+//    }
 
-    fun addNews(newsArticle: List<NewsArticle>) {
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.addNews(result)
-        }
-    }
+//    fun addNews(newsArticle: List<NewsArticle>) {
+//        viewModelScope.launch(Dispatchers.IO) {
+//            repository.addNews(result[0])
+//        }
+//        newsArticle.map {
+//            viewModelScope.launch(Dispatchers.IO) {
+//                repository.addNews(it)
+//            }
+//        }
+//    }
 
     fun getTopHeadlines() {
         viewModelScope.launch {
             try {
-                val response = MarsApi.retrofitService.topHeadlines()
+                val response = NewsApi.retrofitService.topHeadlines()
                 response.articles.map {
                     result.add(NewsArticle(
                         0,
@@ -45,17 +47,11 @@ class NewsViewModel (application: Application): AndroidViewModel(application) {
                         it.urlToImage
                     ))
                 }
-                Log.d("TAG", "getTopHeadlines: ${result.size}")
-//                loadNews()
+                Log.d("TAG", "getTopHeadlines: ${result}")
+//                addNews(result)
             } catch (e: Exception) {
                 Log.d("TAG", "$e")
             }
         }
-    }
-
-    private fun loadNews() {
-
-//            addNews(result[0])
-
     }
 }

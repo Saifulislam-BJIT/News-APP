@@ -15,19 +15,21 @@ abstract class NewsDatabase : RoomDatabase() {
         private var INSTANCE: NewsDatabase? = null
 
         fun getDatabase(context: Context): NewsDatabase {
-            val tempInstance = INSTANCE
-            if (tempInstance != null) {
-                return tempInstance
-            }
-            synchronized(this) {
+            // if the INSTANCE is not null, then return it,
+            // if it is, then create the database
+            return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     NewsDatabase::class.java,
                     "news_database"
-                ).allowMainThreadQueries()
+                )
+                    // Wipes and rebuilds instead of migrating if no Migration object.
+                    // Migration is not part of this codelab.
+                    .fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = instance
-                return instance
+                // return instance
+                instance
             }
         }
     }

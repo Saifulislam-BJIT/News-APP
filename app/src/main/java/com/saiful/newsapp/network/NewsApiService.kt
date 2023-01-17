@@ -18,7 +18,7 @@ private val retrofit = Retrofit.Builder()
     .baseUrl(BASE_URL)
     .build()
 
-object MarsApi {
+object NewsApi {
     val retrofitService: NewsApiService by lazy { retrofit.create(NewsApiService::class.java) }
 }
 

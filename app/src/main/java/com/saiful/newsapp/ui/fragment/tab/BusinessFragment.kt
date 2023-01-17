@@ -12,6 +12,7 @@ import com.saiful.newsapp.viewModel.NewsViewModel
 class BusinessFragment : Fragment() {
     private val viewModel: NewsViewModel by viewModels()
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -22,6 +23,6 @@ class BusinessFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-         viewModel.getTopHeadlines()
+        viewModel.getTopHeadlines()
     }
 }
