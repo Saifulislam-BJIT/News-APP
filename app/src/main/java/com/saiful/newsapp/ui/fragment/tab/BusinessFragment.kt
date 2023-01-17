@@ -5,12 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.saiful.newsapp.R
 import com.saiful.newsapp.viewModel.NewsViewModel
 
 class BusinessFragment : Fragment() {
-private lateinit var viewModel: NewsViewModel
+    private val viewModel: NewsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,8 +22,6 @@ private lateinit var viewModel: NewsViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-         viewModel = ViewModelProvider(this)[NewsViewModel::class.java]
-//        val viewModel: NewsViewModel by viewModels()
-        viewModel.getTopHeadlines()
+         viewModel.getTopHeadlines()
     }
 }

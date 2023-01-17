@@ -1,12 +1,18 @@
 package com.saiful.newsapp.model
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "news")
 data class NewsArticle(
-    val title: String?,
-    val author: String?,
-    val content: String?,
-    val description: String?,
-    val publishedAt: String?,
-    val sourceName: String?,
-    val url: String?,
-    val urlToImage: String?
+    @PrimaryKey(autoGenerate = true) val id: Int,
+    @ColumnInfo(name = "title") val title: String?,
+    @ColumnInfo(name = "author") val author: String?,
+    @ColumnInfo(name = "content") val content: String?,
+    @ColumnInfo(name = "description") val description: String?,
+    @ColumnInfo(name = "publishedAt") val publishedAt: String?,
+    @ColumnInfo(name = "sourceName") val sourceName: String?,
+    @ColumnInfo(name = "url") val url: String?,
+    @ColumnInfo(name = "urlToImage") val urlToImage: String?
 )
