@@ -1,5 +1,6 @@
 package com.saiful.newsapp.network
 
+import com.saiful.newsapp.model.News
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
@@ -8,7 +9,6 @@ import retrofit2.http.GET
 
 private const val BASE_URL = "https://newsapi.org/v2/"
 private const val TOKEN = "9d68e0d1f113454cb2e1e6ad604ac096"
-
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()
@@ -23,6 +23,7 @@ object MarsApi {
 }
 
 interface NewsApiService {
-    @GET("top-headlines")
-    suspend fun getPhotos() : String
+    @GET("top-headlines?country=us&apiKey=$TOKEN")
+    suspend fun topHeadlines() : News
+
 }
