@@ -3,6 +3,7 @@ package com.saiful.newsapp.viewModel
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.saiful.newsapp.database.NewsArticle
 import com.saiful.newsapp.database.NewsDatabase
@@ -14,11 +15,14 @@ import kotlinx.coroutines.launch
 
 class NewsViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: NewsRepository
-    val result = mutableListOf<NewsArticle>()
+    private val result = mutableListOf<NewsArticle>()
+    val readAllNews: LiveData<List<NewsArticle>>
 
     init {
         val newsDao = NewsDatabase.getDatabase(application).getNewsDao()
         repository = NewsRepository(newsDao)
+        readAllNews = repository.readAllNews
+        Log.d("TAG", "init: called")
 //        getTopHeadlines()
 //        addNews(result.toList())
     }

@@ -1,19 +1,18 @@
 package com.saiful.newsapp.ui.fragment.tab
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModelProvider
 import com.saiful.newsapp.R
-import com.saiful.newsapp.database.NewsArticle
 import com.saiful.newsapp.global.Global
 import com.saiful.newsapp.viewModel.NewsViewModel
 
 class BusinessFragment : Fragment() {
-    private val viewModel: NewsViewModel by viewModels()
+    private lateinit var viewModel: NewsViewModel
 
 
     override fun onCreateView(
@@ -26,6 +25,8 @@ class BusinessFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProvider(this)[NewsViewModel::class.java]
+        Log.d("TAG", "onViewCreated: readAllNews ${viewModel.readAllNews.value}")
 //        viewModel.getTopHeadlines()
 //        Global.category = "business"
 //        viewModel.getTopHeadlines()
