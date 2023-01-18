@@ -6,7 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LiveData
 import com.saiful.newsapp.R
+import com.saiful.newsapp.database.NewsArticle
+import com.saiful.newsapp.global.Global
 import com.saiful.newsapp.viewModel.NewsViewModel
 
 class BusinessFragment : Fragment() {
@@ -23,6 +26,14 @@ class BusinessFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+//        viewModel.getTopHeadlines()
+//        Global.category = "business"
+//        viewModel.getTopHeadlines()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Global.category = "business"
         viewModel.getTopHeadlines()
     }
 }
