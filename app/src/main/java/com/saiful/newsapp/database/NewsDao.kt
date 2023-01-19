@@ -14,7 +14,4 @@ interface NewsDao {
     @Query("SELECT * FROM news ORDER BY id DESC")
     fun readAllNews(): LiveData<List<NewsArticle>>
 
-//    @Query("SELECT * FROM articles")
-//    fun getAll(): LiveData<List<NewsArticle>>
-
 }
