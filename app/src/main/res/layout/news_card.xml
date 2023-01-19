@@ -19,6 +19,8 @@
             android:layout_height="100dp"
             android:src="@drawable/ic_search"
             android:scaleType="centerCrop"
+            android:background="@drawable/corner_radius"
+            android:clipToOutline="true"
             android:contentDescription="@string/it_s_image"/>
 
         <LinearLayout
