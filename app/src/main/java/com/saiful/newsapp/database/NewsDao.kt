@@ -32,4 +32,8 @@ interface NewsDao {
     @Query("SELECT * FROM news WHERE category='technology' ORDER BY id DESC")
     fun readAllTechnologyNews(): LiveData<List<NewsArticle>>
 
+    // Search function
+    @Query("SELECT * FROM news WHERE title LIKE '%' || :search || '%'")
+    fun searchNews(search: String?): LiveData<List<NewsArticle>>
+
 }

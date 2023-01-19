@@ -68,7 +68,7 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
                     )
                 }
                 addNews()
-                Log.d("TAG", "getTopHeadlines: called ${result}")
+                Log.d("TAG", "getTopHeadlines: called $result")
             } catch (e: Exception) {
                 Log.d("TAG", "$e")
             }
@@ -81,5 +81,10 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
                 repository.addNews(i)
             }
         }
+    }
+
+    fun searchNews(query: String) {
+        readAllNews = repository.searchNews(query)
+        Log.d("TAG", "searchNews: ${repository.searchNews(query).value?.size}")
     }
 }

@@ -18,6 +18,8 @@ class NewsRepository(private val newsDao: NewsDao) {
 
     fun readAllTechnologyNews() = newsDao.readAllTechnologyNews()
 
+    fun searchNews(search: String) = newsDao.searchNews(search)
+
     suspend fun addNews(newsArticle: NewsArticle) {
         newsDao.addNews(newsArticle)
     }

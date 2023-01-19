@@ -37,12 +37,6 @@ class TechnologyFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[NewsViewModel::class.java]
 
-//        val recycler = binding.cardNewsRecycler
-//        recycler.setHasFixedSize(true)
-//        viewModel.readAllNews.observe(viewLifecycleOwner) {
-////            Log.d("TAG", "onViewCreated: result: ${it.size}")
-//            recycler.adapter = CardNewsAdapter(requireContext(), it)
-//        }
     }
 
     @SuppressLint("NotifyDataSetChanged")
