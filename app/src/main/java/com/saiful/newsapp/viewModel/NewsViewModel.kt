@@ -22,18 +22,35 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
         val newsDao = NewsDatabase.getDatabase(application).getNewsDao()
         repository = NewsRepository(newsDao)
         readAllNewsFromLocal()
-//        readAllNews = repository.readAllNews
-//        Log.d("TAG", repository.readAllNews.value?.size.toString())
     }
 
     fun readAllNewsFromLocal() {
-        readAllNews = repository.readAllNews()
+        with(repository) {
+            Log.d("TAG", "readAllNewsFromLocal: ${Global.category}")
+            readAllNews = when (Global.category) {
+                "business" -> readAllBusinessNews()
+                "entertainment" -> readAllEntertainmentNews()
+                "general" -> readAllGeneralNews()
+                "health" -> readAllHealthNews()
+                "science" -> readAllScienceNews()
+                "sports" -> readAllSportsNews()
+                else -> readAllTechnologyNews()
+            }
+        }
     }
 
-    fun getTopHeadlines() {
+    fun loadNewsFromRemote() {
         viewModelScope.launch {
             try {
-                val response = NewsApi.retrofitService.topHeadlines()
+                val response = when (Global.category) {
+                    "business" -> NewsApi.retrofitService.topHeadlinesBusiness()
+                    "entertainment" -> NewsApi.retrofitService.topHeadlinesEntertainment()
+                    "general" -> NewsApi.retrofitService.topHeadlinesGeneral()
+                    "health" -> NewsApi.retrofitService.topHeadlinesHealth()
+                    "science" -> NewsApi.retrofitService.topHeadlinesScience()
+                    "sports" -> NewsApi.retrofitService.topHeadlinesSports()
+                    else -> NewsApi.retrofitService.topHeadlinesTechnology()
+                }
                 response.articles.map {
                     result.add(
                         NewsArticle(
@@ -64,6 +81,5 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
                 repository.addNews(i)
             }
         }
-//        Log.d("TAG", "addNews: called ")
     }
 }

@@ -23,7 +23,25 @@ object NewsApi {
 }
 
 interface NewsApiService {
-    @GET("top-headlines?country=us&apiKey=$TOKEN")
-    suspend fun topHeadlines() : News
+    @GET("top-headlines?country=us&category=business&apiKey=$TOKEN")
+    suspend fun topHeadlinesBusiness() : News
+
+    @GET("top-headlines?country=us&category=entertainment&apiKey=$TOKEN")
+    suspend fun topHeadlinesEntertainment() : News
+
+    @GET("top-headlines?country=us&category=general&apiKey=$TOKEN")
+    suspend fun topHeadlinesGeneral() : News
+
+    @GET("top-headlines?country=us&category=health&apiKey=$TOKEN")
+    suspend fun topHeadlinesHealth() : News
+
+    @GET("top-headlines?country=us&category=science&apiKey=$TOKEN")
+    suspend fun topHeadlinesScience() : News
+
+    @GET("top-headlines?country=us&category=sports&apiKey=$TOKEN")
+    suspend fun topHeadlinesSports() : News
+
+    @GET("top-headlines?country=us&category=technology&apiKey=$TOKEN")
+    suspend fun topHeadlinesTechnology() : News
 
 }

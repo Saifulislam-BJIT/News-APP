@@ -1,6 +1,8 @@
 package com.saiful.newsapp.ui.fragment.tab
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,17 +36,29 @@ class BusinessFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[NewsViewModel::class.java]
 
-        var recycler = binding.cardNewsRecycler
-        recycler.setHasFixedSize(true)
-        viewModel.readAllNews.observe(viewLifecycleOwner) {
-//            Log.d("TAG", "onViewCreated: result: $it")
-            recycler.adapter = CardNewsAdapter(requireContext(), it)
-        }
+//        val recycler = binding.cardNewsRecycler
+//        recycler.setHasFixedSize(true)
+//        viewModel.readAllNews.observe(viewLifecycleOwner) {
+////            Log.d("TAG", "onViewCreated: result: ${it.size}")
+//            recycler.adapter = CardNewsAdapter(requireContext(), it)
+//        }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onResume() {
         super.onResume()
         Global.category = "business"
-//        viewModel.getTopHeadlines()
+        viewModel.readAllNewsFromLocal()
+
+        val recycler = binding.cardNewsRecycler
+        recycler.setHasFixedSize(true)
+        viewModel.readAllNews.observe(viewLifecycleOwner) {
+            Log.d("TAG", "onResume:  ${it.size}")
+            if (it.isEmpty()) {
+                viewModel.loadNewsFromRemote()
+                recycler.adapter?.notifyDataSetChanged()
+            }
+            recycler.adapter = CardNewsAdapter(requireContext(), it)
+        }
     }
 }
