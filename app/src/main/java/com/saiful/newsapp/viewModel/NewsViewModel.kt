@@ -16,27 +16,15 @@ import kotlinx.coroutines.launch
 class NewsViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: NewsRepository
     private val result = mutableListOf<NewsArticle>()
-    val readAllNews: LiveData<List<NewsArticle>>
+    var readAllNews: LiveData<List<NewsArticle>>
 
     init {
         val newsDao = NewsDatabase.getDatabase(application).getNewsDao()
         repository = NewsRepository(newsDao)
+//        readAllNews()
         readAllNews = repository.readAllNews
-        Log.d("TAG", "init: called")
-//        getTopHeadlines()
-//        addNews(result.toList())
+        Log.d("TAG", repository.readAllNews.value?.size.toString())
     }
-
-//    fun addNews(newsArticle: List<NewsArticle>) {
-//        viewModelScope.launch(Dispatchers.IO) {
-//            repository.addNews(result[0])
-//        }
-//        newsArticle.map {
-//            viewModelScope.launch(Dispatchers.IO) {
-//                repository.addNews(it)
-//            }
-//        }
-//    }
 
     fun getTopHeadlines() {
         viewModelScope.launch {
@@ -72,6 +60,6 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
                 repository.addNews(i)
             }
         }
-        Log.d("TAG", "addNews: called ")
+//        Log.d("TAG", "addNews: called ")
     }
 }
