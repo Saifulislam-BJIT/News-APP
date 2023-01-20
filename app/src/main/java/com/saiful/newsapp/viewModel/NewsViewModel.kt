@@ -81,6 +81,7 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
                 repository.addNews(i)
             }
         }
+        result.clear()
     }
 
     fun addBookmarkNews(newsArticle: NewsArticle) {

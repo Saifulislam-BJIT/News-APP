@@ -50,13 +50,14 @@
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
                 <ImageButton
                     android:id="@+id/card_news_bookmark"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_bookmark"/>
+                    android:src="@drawable/ic_bookmark"
+                    />
 
                 <Button
                     android:id="@+id/card_news_continue_reading"

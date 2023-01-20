@@ -11,8 +11,8 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_home_to_webView"
-            app:destination="@id/webViewFragment" />
+            android:id="@+id/action_home_to_newsArticle"
+            app:destination="@id/newsArticleFragment" />
     </fragment>
     <fragment
         android:id="@+id/webViewFragment"
@@ -23,5 +23,14 @@
             android:name="webUrl"
             app:argType="string"
             android:defaultValue="https://www.google.com" />
+    </fragment>
+    <fragment
+        android:id="@+id/newsArticleFragment"
+        android:name="com.saiful.newsapp.ui.fragment.NewsArticleFragment"
+        android:label="fragment_news_article"
+        tools:layout="@layout/fragment_news_article" >
+        <action
+            android:id="@+id/action_newsArticleFragment_to_webViewFragment"
+            app:destination="@id/webViewFragment" />
     </fragment>
 </navigation>

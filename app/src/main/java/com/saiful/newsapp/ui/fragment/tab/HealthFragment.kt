@@ -54,6 +54,13 @@ class HealthFragment : Fragment() {
             }
             recycler.adapter = CardNewsAdapter(requireContext(), it, viewModel)
         }
+
+        val swipeRefreshLayout = binding.swipeRefreshLayout
+        swipeRefreshLayout.setOnRefreshListener {
+            swipeRefreshLayout.isRefreshing = false
+            viewModel.loadNewsFromRemote()
+            recycler.adapter?.notifyDataSetChanged()
+        }
     }
 
 }

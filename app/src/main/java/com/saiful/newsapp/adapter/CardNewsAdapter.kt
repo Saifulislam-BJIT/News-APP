@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.saiful.newsapp.R
 import com.saiful.newsapp.database.NewsArticle
+import com.saiful.newsapp.global.Global
 import com.saiful.newsapp.viewModel.NewsViewModel
 
 class CardNewsAdapter(
@@ -45,13 +46,27 @@ class CardNewsAdapter(
             .centerCrop()
             .placeholder(R.drawable.ic_search)
             .into(holder.itemView.findViewById(R.id.card_news_image));
+
+//        details fragment action
         holder.newsContinue.setOnClickListener {
             Log.d("TAG", "onBindViewHolder: click")
+            Global.newsArticle = item
+            Log.d("TAG", "onBindViewHolder: ${Global.newsArticle}")
+//            it.findNavController().navigate(R.id.action_home_to_newsArticle)
+//            val transaction = supportFragmentManager.beginTransaction()
+//            transaction.replace(R.id.nav_host_fragment, fragment)
+//            transaction.commit()
+//Navigation.createNavigateOnClickListener(R.id.action_home_to_newsArticle).onClick(it.rootView)
         }
 
+//        Bookmark button
         holder.newsBookmark.setOnClickListener {
             Log.d("TAG", "onBindViewHolder: click")
             viewModel.addBookmarkNews(item)
+        }
+
+        if(item.isBookmark) {
+            holder.newsBookmark.setImageResource(R.drawable.ic_favorite)
         }
     }
 
