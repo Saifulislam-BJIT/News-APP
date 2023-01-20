@@ -77,6 +77,5 @@ class HomeFragment : Fragment() {
                 return true
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
-
     }
 }

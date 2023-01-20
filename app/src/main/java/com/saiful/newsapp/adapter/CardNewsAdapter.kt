@@ -52,11 +52,6 @@ class CardNewsAdapter(
             Log.d("TAG", "onBindViewHolder: click")
             Global.newsArticle = item
             Log.d("TAG", "onBindViewHolder: ${Global.newsArticle}")
-//            it.findNavController().navigate(R.id.action_home_to_newsArticle)
-//            val transaction = supportFragmentManager.beginTransaction()
-//            transaction.replace(R.id.nav_host_fragment, fragment)
-//            transaction.commit()
-//Navigation.createNavigateOnClickListener(R.id.action_home_to_newsArticle).onClick(it.rootView)
         }
 
 //        Bookmark button

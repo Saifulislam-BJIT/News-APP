@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import com.saiful.newsapp.R
 import com.saiful.newsapp.database.NewsArticle
 import com.saiful.newsapp.database.NewsDatabase
 import com.saiful.newsapp.global.Global
@@ -28,29 +29,23 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
         with(repository) {
             Log.d("TAG", "readAllNewsFromLocal: ${Global.category}")
             readAllNews = when (Global.category) {
-                "business" -> readAllBusinessNews()
-                "entertainment" -> readAllEntertainmentNews()
-                "general" -> readAllGeneralNews()
-                "health" -> readAllHealthNews()
-                "science" -> readAllScienceNews()
-                "sports" -> readAllSportsNews()
-                else -> readAllTechnologyNews()
+                "business" -> readAllNews("business")
+                "entertainment" -> readAllNews("entertainment")
+                "general" -> readAllNews("general")
+                "health" -> readAllNews("health")
+                "science" -> readAllNews("science")
+                "sports" -> readAllNews("sports")
+                else -> readAllNews("technology")
             }
         }
     }
 
     fun loadNewsFromRemote() {
+        Log.d("TAG", "loadNewsFromRemote: call news api")
         viewModelScope.launch {
             try {
-                val response = when (Global.category) {
-                    "business" -> NewsApi.retrofitService.topHeadlinesBusiness()
-                    "entertainment" -> NewsApi.retrofitService.topHeadlinesEntertainment()
-                    "general" -> NewsApi.retrofitService.topHeadlinesGeneral()
-                    "health" -> NewsApi.retrofitService.topHeadlinesHealth()
-                    "science" -> NewsApi.retrofitService.topHeadlinesScience()
-                    "sports" -> NewsApi.retrofitService.topHeadlinesSports()
-                    else -> NewsApi.retrofitService.topHeadlinesTechnology()
-                }
+                val response = NewsApi.retrofitService.topHeadlinesNews(Global.category!!,
+                    getApplication<Application>().resources.getString(R.string.api_key))
                 response.articles.map {
                     result.add(
                         NewsArticle(
@@ -68,7 +63,7 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
                     )
                 }
                 addNews()
-                Log.d("TAG", "getTopHeadlines: called $result")
+                Log.d("TAG", "getTopHeadlines: called ${response.articles.size}")
             } catch (e: Exception) {
                 Log.d("TAG", "$e")
             }
@@ -76,12 +71,14 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     private fun addNews() {
+        Log.d("TAG", "addNews: result${result.size}")
         for (i in result) {
             viewModelScope.launch(Dispatchers.IO) {
                 repository.addNews(i)
             }
         }
         result.clear()
+        Log.d("TAG", "addNews: result${result.size}")
     }
 
     fun addBookmarkNews(newsArticle: NewsArticle) {
@@ -108,7 +105,7 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun searchNews(query: String) {
-        readAllNews = repository.searchNews(query)
-        Log.d("TAG", "searchNews: ${repository.searchNews(query).value?.size}")
+        readAllNews = repository.searchNews("%$query%")
+        Log.d("TAG", "searchNews: ${readAllNews.value?.size}")
     }
 }
