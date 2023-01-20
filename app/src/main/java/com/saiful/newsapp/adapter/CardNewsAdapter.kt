@@ -1,25 +1,30 @@
 package com.saiful.newsapp.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.saiful.newsapp.R
 import com.saiful.newsapp.database.NewsArticle
+import com.saiful.newsapp.viewModel.NewsViewModel
 
 class CardNewsAdapter(
     private val context: Context,
-    private val dataset: List<NewsArticle>
+    private val dataset: List<NewsArticle>,
+    private val viewModel: NewsViewModel
 ) : RecyclerView.Adapter<CardNewsAdapter.CardNewsViewHolder>() {
 
     class CardNewsViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         val newsTitle: TextView = view.findViewById(R.id.card_news_title)
-        val newsAuthor: TextView = view.findViewById(R.id.card_news_author)
-        val newsDate: TextView = view.findViewById(R.id.card_news_date)
         val newsDescription: TextView = view.findViewById(R.id.card_news_description)
+        val newsBookmark: ImageButton = view.findViewById(R.id.card_news_bookmark)
+        val newsContinue: Button = view.findViewById(R.id.card_news_continue_reading)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardNewsViewHolder {
@@ -31,8 +36,8 @@ class CardNewsAdapter(
     override fun onBindViewHolder(holder: CardNewsViewHolder, position: Int) {
         val item = dataset[position]
         holder.newsTitle.text = item.title ?: "----"
-        holder.newsAuthor.text = item.author ?: "----"
-        holder.newsDate.text = item.publishedAt?.substring(0, 10) ?: "----"
+//        holder.newsAuthor.text = item.author ?: "----"
+//        holder.newsDate.text = item.publishedAt?.substring(0, 10) ?: "----"
         holder.newsDescription.text = item.description ?: "----"
         Glide
             .with(holder.itemView.context)
@@ -40,6 +45,14 @@ class CardNewsAdapter(
             .centerCrop()
             .placeholder(R.drawable.ic_search)
             .into(holder.itemView.findViewById(R.id.card_news_image));
+        holder.newsContinue.setOnClickListener {
+            Log.d("TAG", "onBindViewHolder: click")
+        }
+
+        holder.newsBookmark.setOnClickListener {
+            Log.d("TAG", "onBindViewHolder: click")
+            viewModel.addBookmarkNews(item)
+        }
     }
 
     override fun getItemCount(): Int {

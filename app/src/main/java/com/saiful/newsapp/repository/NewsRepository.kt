@@ -24,4 +24,10 @@ class NewsRepository(private val newsDao: NewsDao) {
         newsDao.addNews(newsArticle)
     }
 
+    suspend fun addBookmarkNews(newsArticle: NewsArticle) {
+        newsDao.addBookmarkNews(newsArticle)
+    }
+
+    fun readAllBookmarkNews() = newsDao.readAllBookmarkNews()
+
 }

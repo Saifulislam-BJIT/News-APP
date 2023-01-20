@@ -51,7 +51,7 @@ class EntertainmentFragment : Fragment() {
                 viewModel.loadNewsFromRemote()
                 recycler.adapter?.notifyDataSetChanged()
             }
-            recycler.adapter = CardNewsAdapter(requireContext(), it)
+            recycler.adapter = CardNewsAdapter(requireContext(), it, viewModel)
         }
     }
 }

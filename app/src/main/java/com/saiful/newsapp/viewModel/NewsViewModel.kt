@@ -83,6 +83,29 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun addBookmarkNews(newsArticle: NewsArticle) {
+        Log.d("TAG", "addBookmarkNews: ${newsArticle.id}")
+        viewModelScope.launch(Dispatchers.IO)  {
+            repository.addBookmarkNews(NewsArticle(
+                newsArticle.id,
+                newsArticle.title,
+                newsArticle.author,
+                newsArticle.content,
+                newsArticle.description,
+                newsArticle.publishedAt,
+                newsArticle.sourceName,
+                newsArticle.url,
+                newsArticle.urlToImage,
+                newsArticle.category,
+                !newsArticle.isBookmark
+            ))
+        }
+    }
+
+    fun loadBookmarkNews() {
+        readAllNews = repository.readAllBookmarkNews()
+    }
+
     fun searchNews(query: String) {
         readAllNews = repository.searchNews(query)
         Log.d("TAG", "searchNews: ${repository.searchNews(query).value?.size}")

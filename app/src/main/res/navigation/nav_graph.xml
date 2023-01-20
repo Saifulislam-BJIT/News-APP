@@ -9,5 +9,19 @@
         android:id="@+id/homeFragment"
         android:name="com.saiful.newsapp.ui.fragment.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_home_to_webView"
+            app:destination="@id/webViewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/webViewFragment"
+        android:name="com.saiful.newsapp.ui.fragment.WebViewFragment"
+        android:label="fragment_web_view"
+        tools:layout="@layout/fragment_web_view" >
+        <argument
+            android:name="webUrl"
+            app:argType="string"
+            android:defaultValue="https://www.google.com" />
+    </fragment>
 </navigation>

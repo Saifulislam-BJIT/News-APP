@@ -1,10 +1,7 @@
 package com.saiful.newsapp.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface NewsDao {
@@ -35,5 +32,11 @@ interface NewsDao {
     // Search function
     @Query("SELECT * FROM news WHERE title LIKE '%' || :search || '%'")
     fun searchNews(search: String?): LiveData<List<NewsArticle>>
+
+    @Update
+    suspend fun addBookmarkNews(NewsArticle: NewsArticle)
+
+    @Query("SELECT * FROM news WHERE isBookmark=1 ORDER BY id DESC")
+    fun readAllBookmarkNews(): LiveData<List<NewsArticle>>
 
 }
