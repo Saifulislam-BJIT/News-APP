@@ -2,19 +2,19 @@ package com.saiful.newsapp.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.saiful.newsapp.R
 import com.saiful.newsapp.databinding.ActivityMainBinding
-import com.saiful.newsapp.ui.fragment.BookmarkFragment
-import com.saiful.newsapp.ui.fragment.HomeFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
+    private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,23 +24,13 @@ class MainActivity : AppCompatActivity() {
 //        navigation
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        appBarConfiguration = AppBarConfiguration(
+            setOf(R.id.homeFragment, R.id.bookmarkFragment)
+        )
         navController = navHostFragment.findNavController()
-        setupActionBarWithNavController(navController)
+        setupActionBarWithNavController(navController, appBarConfiguration)
+        binding.bottomNavigation.setupWithNavController(navController)
 
-//        bottom navigation
-        binding.bottomNavigation.setOnItemSelectedListener {
-            when(it.itemId) {
-                R.id.action_bookmark -> loadFragment(BookmarkFragment())
-                else -> loadFragment(HomeFragment())
-            }
-            true
-        }
-    }
-
-    private fun loadFragment(fragment: Fragment) {
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.nav_host_fragment, fragment)
-        transaction.commit()
     }
 
     override fun onSupportNavigateUp(): Boolean {

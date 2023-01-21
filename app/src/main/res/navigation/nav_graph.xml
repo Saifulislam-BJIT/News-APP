@@ -8,29 +8,66 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.saiful.newsapp.ui.fragment.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_home_to_newsArticle"
-            app:destination="@id/newsArticleFragment" />
-    </fragment>
+        android:label="Home"
+        tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/webViewFragment"
         android:name="com.saiful.newsapp.ui.fragment.WebViewFragment"
-        android:label="fragment_web_view"
+        android:label="Web"
         tools:layout="@layout/fragment_web_view" >
+
         <argument
-            android:name="webUrl"
-            app:argType="string"
-            android:defaultValue="https://www.google.com" />
+            android:name="webURL"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/newsArticleFragment"
         android:name="com.saiful.newsapp.ui.fragment.NewsArticleFragment"
-        android:label="fragment_news_article"
+        android:label="News Article"
         tools:layout="@layout/fragment_news_article" >
+
         <action
-            android:id="@+id/action_newsArticleFragment_to_webViewFragment"
+            android:id="@+id/action_newsArticle_to_webView"
             app:destination="@id/webViewFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/bookmarkFragment"
+        android:name="com.saiful.newsapp.ui.fragment.BookmarkFragment"
+        android:label="Bookmark"
+        tools:layout="@layout/fragment_bookmark" />
+    <fragment
+        android:id="@+id/businessFragment"
+        android:name="com.saiful.newsapp.ui.fragment.tab.BusinessFragment"
+        android:label="Business"
+        tools:layout="@layout/fragment_business" />
+    <fragment
+        android:id="@+id/entertainmentFragment"
+        android:name="com.saiful.newsapp.ui.fragment.tab.EntertainmentFragment"
+        android:label="Entertainment"
+        tools:layout="@layout/fragment_entertainment" />
+    <fragment
+        android:id="@+id/generalFragment"
+        android:name="com.saiful.newsapp.ui.fragment.tab.GeneralFragment"
+        android:label="General"
+        tools:layout="@layout/fragment_general" />
+    <fragment
+        android:id="@+id/scienceFragment"
+        android:name="com.saiful.newsapp.ui.fragment.tab.ScienceFragment"
+        android:label="Science"
+        tools:layout="@layout/fragment_science" />
+    <fragment
+        android:id="@+id/healthFragment"
+        android:name="com.saiful.newsapp.ui.fragment.tab.HealthFragment"
+        android:label="Health"
+        tools:layout="@layout/fragment_health" />
+    <fragment
+        android:id="@+id/sportsFragment"
+        android:name="com.saiful.newsapp.ui.fragment.tab.SportsFragment"
+        android:label="Sports"
+        tools:layout="@layout/fragment_sports" />
+    <fragment
+        android:id="@+id/technologyFragment"
+        android:name="com.saiful.newsapp.ui.fragment.tab.TechnologyFragment"
+        android:label="Technology"
+        tools:layout="@layout/fragment_technology" />
 </navigation>
