@@ -63,7 +63,7 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
                     )
                 }
                 addNews()
-                Log.d("TAG", "getTopHeadlines: called ${response.articles.size}")
+//                Log.d("TAG", "getTopHeadlines: called ${response.articles.size}")
             } catch (e: Exception) {
                 Log.d("TAG", "$e")
             }
@@ -105,7 +105,13 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun searchNews(query: String) {
-        readAllNews = repository.searchNews("%$query%")
-        Log.d("TAG", "searchNews: ${readAllNews.value?.size}")
+//        readAllNews = repository.searchNews("%$query%")
+        Log.d("TAG", "searchNews: query ${query.length}")
+        Log.d("TAG", "searchNews: live data ${readAllNews.value?.size}")
+        readAllNews.value?.map{
+            result.add(it)
+        }
+        Log.d("TAG", "searchNews: copy ${result.size}")
+//        readAllNews = readAllNews.value.filter { it.title.contains(query) }
     }
 }

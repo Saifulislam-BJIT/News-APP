@@ -61,6 +61,7 @@ class HomeFragment : Fragment() {
                 searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
                     android.widget.SearchView.OnQueryTextListener {
                     override fun onQueryTextSubmit(p0: String?): Boolean {
+                        viewModel.searchNews(p0?: "")
                         return false
                     }
 
@@ -68,7 +69,6 @@ class HomeFragment : Fragment() {
                         // inside on query text change method we are
                         // calling a method to filter our recycler view.
                         viewModel.searchNews(msg)
-
                         return false
                     }
                 })
