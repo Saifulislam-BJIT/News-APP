@@ -55,14 +55,20 @@ class BookmarkFragment : Fragment() {
                 searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
                     android.widget.SearchView.OnQueryTextListener {
                     override fun onQueryTextSubmit(p0: String?): Boolean {
-                        viewModel.searchNews(p0 ?: "")
+//                        viewModel.searchNewsBookmark(p0 ?: "")
                         return false
                     }
 
+                    @SuppressLint("NotifyDataSetChanged")
                     override fun onQueryTextChange(msg: String): Boolean {
                         // inside on query text change method we are
                         // calling a method to filter our recycler view.
-                        viewModel.searchNews(msg)
+//                        viewModel.readAllNews.observe(viewLifecycleOwner) { it ->
+//                            it.filter { it.title?.contains(msg) ?: false }
+//                            Log.d("TAG", "onQueryTextChange: $msg = ${it.filter { it.title?.contains(msg) ?: false }}")
+//                        }
+                        viewModel.searchNewsBookmark(msg)
+                        binding.cardNewsRecycler.adapter?.notifyDataSetChanged()
                         return false
                     }
                 })

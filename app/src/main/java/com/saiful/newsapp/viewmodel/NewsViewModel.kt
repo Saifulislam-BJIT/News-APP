@@ -111,14 +111,15 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
         readAllNews = repository.readAllBookmarkNews()
     }
 
-    fun searchNews(query: String) {
+    fun searchNewsBookmark(query: String) {
 //        readAllNews = repository.searchNews("%$query%")
-        Log.d("TAG", "searchNews: query ${query.length}")
-        Log.d("TAG", "searchNews: live data ${readAllNews.value?.size}")
-        readAllNews.value?.map {
-            result.add(it)
+//        Log.d("TAG", "searchNews: query ${query.length}")
+//        Log.d("TAG", "searchNews: live data ${readAllNews.value?.size}")
+        readAllNews.observe(getApplication()) { it ->
+            it.filter { it.title?.contains(query) ?: false }
+            Log.d("TAG", "onQueryTextChange: $query = ${it.filter { it.title?.contains(query) ?: false }}")
         }
-        Log.d("TAG", "searchNews: copy ${result.size}")
+        Log.d("TAG", "searchNews: copy ${readAllNews.value?.size} ")
 //        readAllNews = readAllNews.value.filter { it.title.contains(query) }
     }
 }
