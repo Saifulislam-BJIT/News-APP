@@ -11,6 +11,7 @@ import com.saiful.newsapp.database.NewsDatabase
 import com.saiful.newsapp.global.Global
 import com.saiful.newsapp.network.NewsApi
 import com.saiful.newsapp.repository.NewsRepository
+import com.saiful.newsapp.utils.Internet
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -41,31 +42,33 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun loadNewsFromRemote() {
-        Log.d("TAG", "loadNewsFromRemote: call news api")
-        viewModelScope.launch {
-            try {
-                val response = NewsApi.retrofitService.topHeadlinesNews(Global.category!!,
-                    getApplication<Application>().resources.getString(R.string.api_key))
-                response.articles.map {
-                    result.add(
-                        NewsArticle(
-                            0,
-                            it.title,
-                            it.author,
-                            it.content,
-                            it.description,
-                            it.publishedAt,
-                            it.source?.name,
-                            it.url,
-                            it.urlToImage,
-                            Global.category
+        if(Internet.isOnline(getApplication())) {
+            Log.d("TAG", "loadNewsFromRemote: call news api")
+            viewModelScope.launch {
+                try {
+                    val response = NewsApi.retrofitService.topHeadlinesNews(Global.category!!,
+                        getApplication<Application>().resources.getString(R.string.api_key))
+                    response.articles.map {
+                        result.add(
+                            NewsArticle(
+                                0,
+                                it.title,
+                                it.author,
+                                it.content,
+                                it.description,
+                                it.publishedAt,
+                                it.source?.name,
+                                it.url,
+                                it.urlToImage,
+                                Global.category
+                            )
                         )
-                    )
-                }
-                addNews()
+                    }
+                    addNews()
 //                Log.d("TAG", "getTopHeadlines: called ${response.articles.size}")
-            } catch (e: Exception) {
-                Log.d("TAG", "$e")
+                } catch (e: Exception) {
+                    Log.d("TAG", "$e")
+                }
             }
         }
     }

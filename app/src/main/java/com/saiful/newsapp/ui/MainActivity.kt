@@ -10,6 +10,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.saiful.newsapp.R
 import com.saiful.newsapp.databinding.ActivityMainBinding
+import com.saiful.newsapp.global.Global
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -20,6 +21,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        Global.contextView = binding.navHostFragment
 
 //        navigation
         val navHostFragment = supportFragmentManager
