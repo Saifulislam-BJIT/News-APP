@@ -9,7 +9,7 @@ class NewsRepository(private val newsDao: NewsDao) {
 
     fun readAllNews(category: String) = newsDao.readAllNews(category)
 
-    fun searchNews(search: String): LiveData<List<NewsArticle>>  {
+    fun searchNews(search: String): LiveData<List<NewsArticle>> {
         val result = newsDao.searchNews(search)
         Log.d("TAG", "searchNews: ${result.value?.size} $search")
         return result

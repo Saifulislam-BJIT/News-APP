@@ -7,7 +7,8 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.saiful.newsapp.model.Tab
 import com.saiful.newsapp.ui.fragment.tab.*
 
-class TabAdapter(manager: FragmentManager, lifecycle: Lifecycle) : FragmentStateAdapter(manager, lifecycle){
+class TabAdapter(manager: FragmentManager, lifecycle: Lifecycle) :
+    FragmentStateAdapter(manager, lifecycle) {
     companion object {
         val tabList = listOf(
             Tab(BusinessFragment(), "Business"),

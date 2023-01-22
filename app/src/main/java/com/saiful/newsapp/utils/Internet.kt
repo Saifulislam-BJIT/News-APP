@@ -26,7 +26,13 @@ class Internet {
                     return true
                 }
             }
-            Global.contextView?.let { Snackbar.make(it, "Internet is not available", Snackbar.LENGTH_LONG).show() }
+            Global.contextView?.let {
+                Snackbar.make(
+                    it,
+                    "Internet is not available",
+                    Snackbar.LENGTH_LONG
+                ).show()
+            }
             return false
         }
     }

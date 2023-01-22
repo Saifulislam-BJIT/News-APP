@@ -28,6 +28,6 @@ interface NewsApiService {
     suspend fun topHeadlinesNews(
         @Query("category") category: String,
         @Query("apiKey") apiKey: String
-    ) : News
+    ): News
 
 }

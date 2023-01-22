@@ -42,7 +42,7 @@ class WebViewFragment : Fragment() {
     }
 
     private fun displayNews() {
-        if(Internet.isOnline(requireContext())) {
+        if (Internet.isOnline(requireContext())) {
             binding.webView.loadUrl(args.webURL)
         }
     }

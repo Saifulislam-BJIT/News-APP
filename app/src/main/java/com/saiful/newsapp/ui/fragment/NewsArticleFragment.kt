@@ -43,8 +43,10 @@ class NewsArticleFragment : Fragment() {
 
         binding.newsTitle.text = Global.newsArticle?.title ?: "UnTitle"
         binding.newsAuthor.text = getString(R.string.author_name, Global.newsArticle?.author)
-        binding.newsPublishedDate.text = Global.newsArticle?.publishedAt?.substring(0, 10) ?: "----:--:--"
-        binding.newsDescription.text = Global.newsArticle?.description ?: Global.newsArticle?.content ?: "----"
+        binding.newsPublishedDate.text =
+            Global.newsArticle?.publishedAt?.substring(0, 10) ?: "----:--:--"
+        binding.newsDescription.text =
+            Global.newsArticle?.description ?: Global.newsArticle?.content ?: "----"
         binding.newsSource.text = getString(R.string.source_name, Global.newsArticle?.sourceName)
 
         Glide
@@ -58,6 +60,7 @@ class NewsArticleFragment : Fragment() {
             .into(binding.coverImg)
 
 //        Bottom navigation hide
-        requireActivity().findViewById<BottomNavigationView>(R.id.bottom_navigation).visibility = View.GONE
+        requireActivity().findViewById<BottomNavigationView>(R.id.bottom_navigation).visibility =
+            View.GONE
     }
 }

@@ -1,6 +1,5 @@
 package com.saiful.newsapp.adapter
 
-import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,10 +12,9 @@ import com.bumptech.glide.Glide
 import com.saiful.newsapp.R
 import com.saiful.newsapp.database.NewsArticle
 import com.saiful.newsapp.global.Global
-import com.saiful.newsapp.viewModel.NewsViewModel
+import com.saiful.newsapp.viewmodel.NewsViewModel
 
 class CardNewsAdapter(
-    private val context: Context,
     private val dataset: List<NewsArticle>,
     private val viewModel: NewsViewModel
 ) : RecyclerView.Adapter<CardNewsAdapter.CardNewsViewHolder>() {

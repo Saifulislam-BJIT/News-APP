@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.saiful.newsapp.adapter.CardNewsAdapter
 import com.saiful.newsapp.databinding.FragmentTechnologyBinding
 import com.saiful.newsapp.global.Global
-import com.saiful.newsapp.viewModel.NewsViewModel
+import com.saiful.newsapp.viewmodel.NewsViewModel
 
 
 class TechnologyFragment : Fragment() {
@@ -53,7 +53,7 @@ class TechnologyFragment : Fragment() {
                 viewModel.loadNewsFromRemote()
                 recycler.adapter?.notifyDataSetChanged()
             }
-            recycler.adapter = CardNewsAdapter(requireContext(), it, viewModel)
+            recycler.adapter = CardNewsAdapter(it, viewModel)
         }
 
         val swipeRefreshLayout = binding.swipeRefreshLayout

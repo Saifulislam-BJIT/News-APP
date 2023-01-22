@@ -1,4 +1,4 @@
-package com.saiful.newsapp.viewModel
+package com.saiful.newsapp.viewmodel
 
 import android.app.Application
 import android.util.Log
@@ -42,12 +42,14 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun loadNewsFromRemote() {
-        if(Internet.isOnline(getApplication())) {
+        if (Internet.isOnline(getApplication())) {
             Log.d("TAG", "loadNewsFromRemote: call news api")
             viewModelScope.launch {
                 try {
-                    val response = NewsApi.retrofitService.topHeadlinesNews(Global.category!!,
-                        getApplication<Application>().resources.getString(R.string.api_key))
+                    val response = NewsApi.retrofitService.topHeadlinesNews(
+                        Global.category!!,
+                        getApplication<Application>().resources.getString(R.string.api_key)
+                    )
                     response.articles.map {
                         result.add(
                             NewsArticle(
@@ -86,20 +88,22 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
 
     fun addBookmarkNews(newsArticle: NewsArticle) {
         Log.d("TAG", "addBookmarkNews: ${newsArticle.id}")
-        viewModelScope.launch(Dispatchers.IO)  {
-            repository.addBookmarkNews(NewsArticle(
-                newsArticle.id,
-                newsArticle.title,
-                newsArticle.author,
-                newsArticle.content,
-                newsArticle.description,
-                newsArticle.publishedAt,
-                newsArticle.sourceName,
-                newsArticle.url,
-                newsArticle.urlToImage,
-                newsArticle.category,
-                !newsArticle.isBookmark
-            ))
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.addBookmarkNews(
+                NewsArticle(
+                    newsArticle.id,
+                    newsArticle.title,
+                    newsArticle.author,
+                    newsArticle.content,
+                    newsArticle.description,
+                    newsArticle.publishedAt,
+                    newsArticle.sourceName,
+                    newsArticle.url,
+                    newsArticle.urlToImage,
+                    newsArticle.category,
+                    !newsArticle.isBookmark
+                )
+            )
         }
     }
 
@@ -111,7 +115,7 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
 //        readAllNews = repository.searchNews("%$query%")
         Log.d("TAG", "searchNews: query ${query.length}")
         Log.d("TAG", "searchNews: live data ${readAllNews.value?.size}")
-        readAllNews.value?.map{
+        readAllNews.value?.map {
             result.add(it)
         }
         Log.d("TAG", "searchNews: copy ${result.size}")
