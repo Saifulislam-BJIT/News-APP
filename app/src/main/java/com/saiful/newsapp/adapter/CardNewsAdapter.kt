@@ -6,14 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageButton
 import android.widget.TextView
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.saiful.newsapp.R
 import com.saiful.newsapp.database.NewsArticle
-import com.saiful.newsapp.global.Global
 import com.saiful.newsapp.viewModel.NewsViewModel
 
 class CardNewsAdapter(
@@ -25,8 +22,8 @@ class CardNewsAdapter(
     class CardNewsViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         val newsTitle: TextView = view.findViewById(R.id.card_news_title)
         val newsDescription: TextView = view.findViewById(R.id.card_news_description)
-        val newsBookmark: ImageButton = view.findViewById(R.id.card_news_bookmark)
-        val newsContinue: Button = view.findViewById(R.id.card_news_continue_reading)
+        val newsBookmark: Button = view.findViewById(R.id.card_news_bookmark)
+//        val newsContinue: Button = view.findViewById(R.id.card_news_continue_reading)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardNewsViewHolder {
@@ -49,12 +46,12 @@ class CardNewsAdapter(
             .into(holder.itemView.findViewById(R.id.card_news_image));
 
 //        details fragment action
-        holder.newsContinue.setOnClickListener {
-            Log.d("TAG", "onBindViewHolder: click")
-            Global.newsArticle = item
-            Log.d("TAG", "onBindViewHolder: ${Global.newsArticle}")
-            it.findNavController().navigate(R.id.newsArticleFragment)
-        }
+//        holder.newsContinue.setOnClickListener {
+//            Log.d("TAG", "onBindViewHolder: click")
+//            Global.newsArticle = item
+//            Log.d("TAG", "onBindViewHolder: ${Global.newsArticle}")
+//            it.findNavController().navigate(R.id.newsArticleFragment)
+//        }
 
 //        Bookmark button
         holder.newsBookmark.setOnClickListener {
@@ -62,9 +59,9 @@ class CardNewsAdapter(
             viewModel.addBookmarkNews(item)
         }
 
-        if(item.isBookmark) {
-            holder.newsBookmark.setImageResource(R.drawable.ic_favorite)
-        }
+//        if(item.isBookmark) {
+//            holder.newsBookmark.setImageResource(R.drawable.ic_favorite)
+//        }
     }
 
     override fun getItemCount(): Int {
