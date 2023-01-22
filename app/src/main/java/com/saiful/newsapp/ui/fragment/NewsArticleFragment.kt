@@ -42,16 +42,19 @@ class NewsArticleFragment : Fragment() {
         }
 
         binding.newsTitle.text = Global.newsArticle?.title ?: "UnTitle"
-        binding.newsAuthor.text = "Author: ${Global.newsArticle?.author}" ?: "Author"
-        binding.newsPublishedDate.text = Global.newsArticle?.publishedAt?.substring(0, 10) ?: "--:--:----"
+        binding.newsAuthor.text = getString(R.string.author_name, Global.newsArticle?.author)
+        binding.newsPublishedDate.text = Global.newsArticle?.publishedAt?.substring(0, 10) ?: "----:--:--"
         binding.newsDescription.text = Global.newsArticle?.description ?: Global.newsArticle?.content ?: "----"
-        binding.newsSource.text = "Source: ${Global.newsArticle?.sourceName}" ?: "----"
+        binding.newsSource.text = getString(R.string.source_name, Global.newsArticle?.sourceName)
 
         Glide
             .with(requireContext())
             .load(Global.newsArticle?.urlToImage)
             .centerCrop()
-            .placeholder(R.drawable.ic_search)
+            .thumbnail(
+                Glide.with(requireContext())
+                    .load(R.drawable.search_thumbnail)
+            )
             .into(binding.coverImg)
 
 //        Bottom navigation hide

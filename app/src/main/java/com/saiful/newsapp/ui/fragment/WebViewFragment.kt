@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.saiful.newsapp.databinding.FragmentWebViewBinding
+import com.saiful.newsapp.utils.Internet
 
 class WebViewFragment : Fragment() {
     val args: WebViewFragmentArgs by navArgs()
@@ -31,7 +32,19 @@ class WebViewFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 //        Log.d("TAG", "onViewCreated: ${args.webURL}")
-        binding.webView.loadUrl(args.webURL)
+        displayNews()
+
+        val swipeRefreshLayout = binding.swipeRefreshLayout
+        swipeRefreshLayout.setOnRefreshListener {
+            swipeRefreshLayout.isRefreshing = false
+            displayNews()
+        }
+    }
+
+    private fun displayNews() {
+        if(Internet.isOnline(requireContext())) {
+            binding.webView.loadUrl(args.webURL)
+        }
     }
 
 }

@@ -41,7 +41,10 @@ class CardNewsAdapter(
             .with(holder.itemView.context)
             .load(item.urlToImage)
             .centerCrop()
-            .placeholder(R.drawable.ic_search)
+            .thumbnail(
+                Glide.with(holder.itemView.context)
+                    .load(R.drawable.search_gif)
+            )
             .into(holder.itemView.findViewById(R.id.card_news_image));
 
 //        details fragment action
