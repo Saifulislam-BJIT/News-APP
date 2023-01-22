@@ -90,19 +90,7 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
         Log.d("TAG", "addBookmarkNews: ${newsArticle.id}")
         viewModelScope.launch(Dispatchers.IO) {
             repository.addBookmarkNews(
-                NewsArticle(
-                    newsArticle.id,
-                    newsArticle.title,
-                    newsArticle.author,
-                    newsArticle.content,
-                    newsArticle.description,
-                    newsArticle.publishedAt,
-                    newsArticle.sourceName,
-                    newsArticle.url,
-                    newsArticle.urlToImage,
-                    newsArticle.category,
-                    !newsArticle.isBookmark
-                )
+                newsArticle.id, !newsArticle.isBookmark
             )
         }
     }
@@ -117,7 +105,10 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
 //        Log.d("TAG", "searchNews: live data ${readAllNews.value?.size}")
         readAllNews.observe(getApplication()) { it ->
             it.filter { it.title?.contains(query) ?: false }
-            Log.d("TAG", "onQueryTextChange: $query = ${it.filter { it.title?.contains(query) ?: false }}")
+            Log.d(
+                "TAG",
+                "onQueryTextChange: $query = ${it.filter { it.title?.contains(query) ?: false }}"
+            )
         }
         Log.d("TAG", "searchNews: copy ${readAllNews.value?.size} ")
 //        readAllNews = readAllNews.value.filter { it.title.contains(query) }

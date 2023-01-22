@@ -8,7 +8,7 @@ interface NewsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addNews(newsArticle: NewsArticle)
 
-    //    Search category
+    // Search category
     @Query("SELECT * FROM news WHERE category=:category ORDER BY id DESC")
     fun readAllNews(category: String): LiveData<List<NewsArticle>>
 
@@ -16,8 +16,9 @@ interface NewsDao {
     @Query("SELECT * FROM news WHERE title LIKE :search")
     fun searchNews(search: String?): LiveData<List<NewsArticle>>
 
-    @Update
-    suspend fun addBookmarkNews(NewsArticle: NewsArticle)
+    // update bookmark column
+    @Query("UPDATE news SET isBookmark=:isBookmark WHERE id=:id")
+    suspend fun addBookmarkNews(id: Int, isBookmark: Boolean)
 
     @Query("SELECT * FROM news WHERE isBookmark=1 ORDER BY id DESC")
     fun readAllBookmarkNews(): LiveData<List<NewsArticle>>
