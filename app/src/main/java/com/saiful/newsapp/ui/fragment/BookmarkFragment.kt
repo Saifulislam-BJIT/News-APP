@@ -4,11 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import androidx.appcompat.widget.SearchView
-import androidx.core.view.MenuHost
-import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.saiful.newsapp.R
@@ -42,42 +38,6 @@ class BookmarkFragment : Fragment() {
         //        Bottom navigation show
         requireActivity().findViewById<BottomNavigationView>(R.id.bottom_navigation).visibility =
             View.VISIBLE
-
-        // Search menu
-        val menuHost: MenuHost = requireActivity()
-        menuHost.addMenuProvider(object : MenuProvider {
-            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                // Add menu items here
-                menuInflater.inflate(R.menu.search_menu, menu)
-                val searchItem = menu.findItem(R.id.action_search)
-                val searchView: SearchView = searchItem.actionView as SearchView
-
-                searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
-                    android.widget.SearchView.OnQueryTextListener {
-                    override fun onQueryTextSubmit(p0: String?): Boolean {
-//                        viewModel.searchNewsBookmark(p0 ?: "")
-                        return false
-                    }
-
-                    @SuppressLint("NotifyDataSetChanged")
-                    override fun onQueryTextChange(msg: String): Boolean {
-                        // inside on query text change method we are
-                        // calling a method to filter our recycler view.
-//                        viewModel.readAllNews.observe(viewLifecycleOwner) { it ->
-//                            it.filter { it.title?.contains(msg) ?: false }
-//                            Log.d("TAG", "onQueryTextChange: $msg = ${it.filter { it.title?.contains(msg) ?: false }}")
-//                        }
-                        viewModel.searchNewsBookmark(msg)
-                        binding.cardNewsRecycler.adapter?.notifyDataSetChanged()
-                        return false
-                    }
-                })
-            }
-
-            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                return true
-            }
-        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 
     @SuppressLint("NotifyDataSetChanged")

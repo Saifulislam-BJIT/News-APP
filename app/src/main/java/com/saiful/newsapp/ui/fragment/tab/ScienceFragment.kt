@@ -3,12 +3,16 @@ package com.saiful.newsapp.ui.fragment.tab
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.appcompat.widget.SearchView
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import com.saiful.newsapp.R
 import com.saiful.newsapp.adapter.CardNewsAdapter
+import com.saiful.newsapp.database.NewsArticle
 import com.saiful.newsapp.databinding.FragmentScienceBinding
 import com.saiful.newsapp.global.Global
 import com.saiful.newsapp.viewmodel.NewsViewModel
@@ -35,6 +39,42 @@ class ScienceFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[NewsViewModel::class.java]
+
+        // Search menu
+        val menuHost: MenuHost = requireActivity()
+        menuHost.addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                // Add menu items here
+                menuInflater.inflate(R.menu.search_menu, menu)
+                val searchItem = menu.findItem(R.id.action_search)
+                val searchView: SearchView = searchItem.actionView as SearchView
+
+                searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+                    android.widget.SearchView.OnQueryTextListener {
+                    override fun onQueryTextSubmit(p0: String?): Boolean {
+//                        viewModel.searchNewsBookmark(p0 ?: "")
+                        return false
+                    }
+
+                    @SuppressLint("NotifyDataSetChanged")
+                    override fun onQueryTextChange(msg: String): Boolean {
+                        val queryResult = mutableListOf<NewsArticle>()
+                        viewModel.readAllNews.value?.map {
+                            if (it.title?.contains(msg, ignoreCase = true) == true) {
+                                queryResult.add(it)
+                            }
+                        }
+                        binding.cardNewsRecycler.adapter = CardNewsAdapter(queryResult, viewModel)
+                        Log.d("TAG", "onQueryTextChange: ${queryResult.size}")
+                        return false
+                    }
+                })
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                return true
+            }
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 
     @SuppressLint("NotifyDataSetChanged")
