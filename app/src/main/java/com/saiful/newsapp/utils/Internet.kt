@@ -9,7 +9,8 @@ import com.saiful.newsapp.global.Global
 
 class Internet {
     companion object {
-        fun isOnline(context: Context): Boolean {
+        fun isOnline(): Boolean {
+            val context = Global.context!!
             val connectivityManager =
                 context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
             val capabilities =

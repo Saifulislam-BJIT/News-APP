@@ -19,7 +19,7 @@ class NewsArticleFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentNewsArticleBinding.inflate(inflater, container, false)
         return binding.root
@@ -45,7 +45,7 @@ class NewsArticleFragment : Fragment() {
         binding.newsPublishedDate.text =
             Global.newsArticle?.publishedAt?.substring(0, 10) ?: "----:--:--"
         binding.newsDescription.text =
-            Global.newsArticle?.description ?: Global.newsArticle?.content ?: "----"
+            "${Global.newsArticle?.description}    asdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddsdfsdfsdfssdfsdfsdf" ?: Global.newsArticle?.content ?: "----"
         binding.newsSource.text = getString(R.string.source_name, Global.newsArticle?.sourceName)
 
         Glide

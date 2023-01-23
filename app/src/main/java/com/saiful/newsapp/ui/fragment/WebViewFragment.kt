@@ -10,14 +10,14 @@ import com.saiful.newsapp.databinding.FragmentWebViewBinding
 import com.saiful.newsapp.utils.Internet
 
 class WebViewFragment : Fragment() {
-    val args: WebViewFragmentArgs by navArgs()
+    private val args: WebViewFragmentArgs by navArgs()
     private var _binding: FragmentWebViewBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentWebViewBinding.inflate(inflater, container, false)
         return binding.root
@@ -42,7 +42,7 @@ class WebViewFragment : Fragment() {
     }
 
     private fun displayNews() {
-        if (Internet.isOnline(requireContext())) {
+        if (Internet.isOnline()) {
             binding.webView.loadUrl(args.webURL)
         }
     }

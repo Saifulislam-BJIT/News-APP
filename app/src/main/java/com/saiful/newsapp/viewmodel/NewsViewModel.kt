@@ -42,7 +42,7 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun loadNewsFromRemote() {
-        if (Internet.isOnline(getApplication())) {
+        if (Internet.isOnline()) {
 //            Log.d("TAG", "loadNewsFromRemote: call news api")
             viewModelScope.launch {
                 try {
