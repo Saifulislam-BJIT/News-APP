@@ -30,4 +30,9 @@ interface NewsApiService {
         @Query("apiKey") apiKey: String
     ): News
 
+    @GET("top-headlines?country=us")
+    fun topHeadlinesBusinessNews(
+        @Query("category") category: String,
+        @Query("apiKey") apiKey: String
+    ): News
 }
