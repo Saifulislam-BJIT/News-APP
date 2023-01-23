@@ -45,7 +45,7 @@ class NewsArticleFragment : Fragment() {
         binding.newsPublishedDate.text =
             Global.newsArticle?.publishedAt?.substring(0, 10) ?: "----:--:--"
         binding.newsDescription.text =
-            "${Global.newsArticle?.description}    asdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddsdfsdfsdfssdfsdfsdf" ?: Global.newsArticle?.content ?: "----"
+            Global.newsArticle?.description ?: Global.newsArticle?.content ?: "----"
         binding.newsSource.text = getString(R.string.source_name, Global.newsArticle?.sourceName)
 
         Glide
