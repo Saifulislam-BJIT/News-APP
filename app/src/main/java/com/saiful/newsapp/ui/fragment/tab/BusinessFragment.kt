@@ -2,7 +2,6 @@ package com.saiful.newsapp.ui.fragment.tab
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuHost
@@ -66,7 +65,7 @@ class BusinessFragment : Fragment() {
                             }
                         }
                         binding.cardNewsRecycler.adapter = CardNewsAdapter(queryResult, viewModel)
-                        Log.d("TAG", "onQueryTextChange: ${queryResult.size}")
+//                        Log.d("TAG", "onQueryTextChange: ${queryResult.size}")
                         return false
                     }
                 })
@@ -87,7 +86,7 @@ class BusinessFragment : Fragment() {
         val recycler = binding.cardNewsRecycler
         recycler.setHasFixedSize(true)
         viewModel.readAllNews.observe(viewLifecycleOwner) {
-            Log.d("TAG", "onResume:  ${it.size}")
+//            Log.d("TAG", "onResume:  ${it.size}")
             if (it.isEmpty()) {
                 viewModel.loadNewsFromRemote()
                 recycler.adapter?.notifyDataSetChanged()

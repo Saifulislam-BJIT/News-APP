@@ -2,7 +2,6 @@ package com.saiful.newsapp.ui.fragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -49,7 +48,7 @@ class BookmarkFragment : Fragment() {
         val recycler = binding.cardNewsRecycler
         recycler.setHasFixedSize(true)
         viewModel.readAllNews.observe(viewLifecycleOwner) {
-            Log.d("TAG", "onResume:  ${it.size}")
+//            Log.d("TAG", "onResume:  ${it.size}")
             recycler.adapter = CardNewsAdapter(it, viewModel)
         }
     }

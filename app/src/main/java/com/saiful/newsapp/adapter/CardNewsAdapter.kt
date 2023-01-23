@@ -1,6 +1,5 @@
 package com.saiful.newsapp.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,15 +46,15 @@ class CardNewsAdapter(
 
 //        details fragment action
         holder.itemView.setOnClickListener {
-            Log.d("TAG", "onBindViewHolder: click")
+//            Log.d("TAG", "onBindViewHolder: click")
             Global.newsArticle = item
-            Log.d("TAG", "onBindViewHolder: ${Global.newsArticle}")
+//            Log.d("TAG", "onBindViewHolder: ${Global.newsArticle}")
             it.findNavController().navigate(R.id.newsArticleFragment)
         }
 
 //        Bookmark button
         holder.newsBookmark.setOnClickListener {
-            Log.d("TAG", "onBindViewHolder: click")
+//            Log.d("TAG", "onBindViewHolder: click")
             viewModel.addBookmarkNews(item)
         }
 

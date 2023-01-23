@@ -5,7 +5,7 @@ import androidx.room.*
 
 @Dao
 interface NewsDao {
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addNews(newsArticle: NewsArticle)
 
     // Search category

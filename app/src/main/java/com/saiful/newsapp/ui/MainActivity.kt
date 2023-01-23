@@ -8,9 +8,13 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
 import com.saiful.newsapp.R
 import com.saiful.newsapp.databinding.ActivityMainBinding
 import com.saiful.newsapp.global.Global
+import com.saiful.newsapp.worker.NewsApiCallWorker
+import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -34,6 +38,9 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         binding.bottomNavigation.setupWithNavController(navController)
 
+        val work = PeriodicWorkRequestBuilder<NewsApiCallWorker>(3, TimeUnit.SECONDS)
+            .build()
+        WorkManager.getInstance(applicationContext).enqueue(work)
     }
 
     override fun onSupportNavigateUp(): Boolean {

@@ -28,7 +28,7 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
 
     fun readAllNewsFromLocal() {
         with(repository) {
-            Log.d("TAG", "readAllNewsFromLocal: ${Global.category}")
+//            Log.d("TAG", "readAllNewsFromLocal: ${Global.category}")
             readAllNews = when (Global.category) {
                 "business" -> readAllNews("business")
                 "entertainment" -> readAllNews("entertainment")
@@ -43,7 +43,7 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
 
     fun loadNewsFromRemote() {
         if (Internet.isOnline(getApplication())) {
-            Log.d("TAG", "loadNewsFromRemote: call news api")
+//            Log.d("TAG", "loadNewsFromRemote: call news api")
             viewModelScope.launch {
                 try {
                     val response = NewsApi.retrofitService.topHeadlinesNews(
@@ -76,18 +76,18 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     private fun addNews() {
-        Log.d("TAG", "addNews: result${result.size}")
+//        Log.d("TAG", "addNews: result${result.size}")
         for (i in result) {
             viewModelScope.launch(Dispatchers.IO) {
                 repository.addNews(i)
             }
         }
         result.clear()
-        Log.d("TAG", "addNews: result${result.size}")
+//        Log.d("TAG", "addNews: result${result.size}")
     }
 
     fun addBookmarkNews(newsArticle: NewsArticle) {
-        Log.d("TAG", "addBookmarkNews: ${newsArticle.id}")
+//        Log.d("TAG", "addBookmarkNews: ${newsArticle.id}")
         viewModelScope.launch(Dispatchers.IO) {
             repository.addBookmarkNews(
                 newsArticle.id, !newsArticle.isBookmark

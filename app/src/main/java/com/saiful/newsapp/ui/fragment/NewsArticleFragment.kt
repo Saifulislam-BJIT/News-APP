@@ -1,7 +1,6 @@
 package com.saiful.newsapp.ui.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,7 +33,7 @@ class NewsArticleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        Log.d("TAG", "onViewCreated: ${Global.newsArticle?.url}")
+//        Log.d("TAG", "onViewCreated: ${Global.newsArticle?.url}")
         binding.goToWeb.setOnClickListener {
             val url = Global.newsArticle?.url ?: "https://www.google.com"
             val action = NewsArticleFragmentDirections.actionNewsArticleToWebView(url)
