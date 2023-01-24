@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigation.setupWithNavController(navController)
 
         val periodicWorkRequest =
-            PeriodicWorkRequest.Builder(NewsApiCallWorker::class.java, 15, TimeUnit.MINUTES).build()
+            PeriodicWorkRequest.Builder(NewsApiCallWorker::class.java, 5, TimeUnit.HOURS).build()
         WorkManager.getInstance(this).enqueueUniquePeriodicWork(
             "periodicNewsAPICall",
             ExistingPeriodicWorkPolicy.KEEP,
