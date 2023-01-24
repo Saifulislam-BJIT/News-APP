@@ -1,6 +1,5 @@
 package com.saiful.newsapp.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -59,7 +58,6 @@ class CardNewsAdapter(
             viewModel.addBookmarkNews(item)
         }
 
-        Log.d("TAG", "${item.id}: ${item.isBookmark}")
         if(item.isBookmark) {
             holder.newsBookmark.setImageResource(R.drawable.ic_bookmark)
         } else {

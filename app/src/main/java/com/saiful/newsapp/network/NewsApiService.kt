@@ -31,7 +31,7 @@ interface NewsApiService {
     ): News
 
     @GET("top-headlines?country=us")
-    fun topHeadlinesBusinessNews(
+    suspend fun topHeadlinesBusinessNews(
         @Query("category") category: String,
         @Query("apiKey") apiKey: String
     ): News
