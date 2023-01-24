@@ -76,7 +76,7 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     private fun addNews() {
-//        Log.d("TAG", "addNews: result${result.size}")
+//        Log.d("TAG", "addNews: result ${result.size}")
         for (i in result) {
             viewModelScope.launch(Dispatchers.IO) {
                 repository.addNews(i)
