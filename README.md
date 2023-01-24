@@ -1,3 +1,3 @@
 # News APP
 
-[!app snapsort](./snapsort/app_snapsort.png)
+![app snapsort](./snapsort/app_snapsort.png)
