@@ -49,6 +49,10 @@ class MainActivity : AppCompatActivity() {
             ExistingPeriodicWorkPolicy.KEEP,
             periodicWorkRequest
         )
+//        one time call
+//        val work = OneTimeWorkRequestBuilder<NewsApiCallWorker>()
+//            .build()
+//        WorkManager.getInstance(this).enqueue(work)
     }
 
     override fun onSupportNavigateUp(): Boolean {
