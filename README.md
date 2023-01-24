@@ -11,3 +11,4 @@
 * News app build MVVM pattern.
 * News can be see sort content. 
 * News can be see origin news.
+* Every time user can be pull to refresh for news.
