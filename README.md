@@ -12,3 +12,4 @@
 1. News can be see sort content. 
 1. News can be see origin news.
 1. Every time user can be pull to refresh for news.
+1. Internet check when api call.
