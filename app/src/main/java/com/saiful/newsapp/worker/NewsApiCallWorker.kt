@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 
 class NewsApiCallWorker(context: Context, params: WorkerParameters) : Worker(context, params) {
     override fun doWork(): Result {
-        Log.d("TAG", "readFromNews: work manager doWork")
+//        Log.d("TAG", "readFromNews: work manager doWork")
         try {
             val scope = CoroutineScope(Dispatchers.IO)
 //        Business
