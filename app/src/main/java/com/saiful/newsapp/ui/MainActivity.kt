@@ -12,8 +12,8 @@ import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequest
 import androidx.work.WorkManager
 import com.saiful.newsapp.R
+import com.saiful.newsapp.constant.Constant
 import com.saiful.newsapp.databinding.ActivityMainBinding
-import com.saiful.newsapp.Constant.Constant
 import com.saiful.newsapp.worker.NewsApiCallWorker
 import java.util.concurrent.TimeUnit
 

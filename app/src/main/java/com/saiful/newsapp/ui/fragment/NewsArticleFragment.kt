@@ -9,8 +9,8 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.saiful.newsapp.R
+import com.saiful.newsapp.constant.Constant
 import com.saiful.newsapp.databinding.FragmentNewsArticleBinding
-import com.saiful.newsapp.Constant.Constant
 
 class NewsArticleFragment : Fragment() {
     private var _binding: FragmentNewsArticleBinding? = null

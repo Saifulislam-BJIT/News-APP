@@ -5,8 +5,8 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.saiful.newsapp.Constant.Constant
-import com.saiful.newsapp.R
+import com.saiful.newsapp.constant.Category
+import com.saiful.newsapp.constant.Constant
 import com.saiful.newsapp.database.NewsArticle
 import com.saiful.newsapp.database.NewsDatabase
 import com.saiful.newsapp.network.NewsApi
@@ -30,13 +30,13 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
         with(repository) {
 //            Log.d("TAG", "readAllNewsFromLocal: ${Global.category}")
             readAllNews = when (Constant.category) {
-                "business" -> readAllNews("business")
-                "entertainment" -> readAllNews("entertainment")
-                "general" -> readAllNews("general")
-                "health" -> readAllNews("health")
-                "science" -> readAllNews("science")
-                "sports" -> readAllNews("sports")
-                else -> readAllNews("technology")
+                Category.BUSINESS -> readAllNews(Category.BUSINESS)
+                Category.ENTERTAINMENT -> readAllNews(Category.ENTERTAINMENT)
+                Category.GENERAL -> readAllNews(Category.GENERAL)
+                Category.HEALTH -> readAllNews(Category.HEALTH)
+                Category.SCIENCE -> readAllNews(Category.SCIENCE)
+                Category.SPORTS -> readAllNews(Category.SPORTS)
+                else -> readAllNews(Category.TECHNOLOGY)
             }
         }
     }
@@ -47,8 +47,7 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
             viewModelScope.launch {
                 try {
                     val response = NewsApi.retrofitService.topHeadlinesNews(
-                        Constant.category!!,
-                        getApplication<Application>().resources.getString(R.string.api_key)
+                        Constant.category, Constant.TOKEN
                     )
                     response.articles.map {
                         result.add(

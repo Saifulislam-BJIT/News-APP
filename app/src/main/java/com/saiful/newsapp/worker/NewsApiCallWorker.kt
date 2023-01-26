@@ -4,8 +4,9 @@ import android.content.Context
 import android.util.Log
 import androidx.work.Worker
 import androidx.work.WorkerParameters
-import com.saiful.newsapp.Constant.Constant
-import com.saiful.newsapp.Constant.Constant.Companion.TOKEN
+import com.saiful.newsapp.constant.Category
+import com.saiful.newsapp.constant.Constant
+import com.saiful.newsapp.constant.Constant.Companion.TOKEN
 import com.saiful.newsapp.database.NewsArticle
 import com.saiful.newsapp.database.NewsDatabase
 import com.saiful.newsapp.network.NewsApi
@@ -22,7 +23,7 @@ class NewsApiCallWorker(context: Context, params: WorkerParameters) : Worker(con
 //        Business
             scope.launch {
                 val response = NewsApi.retrofitService.topHeadlinesBusinessNews(
-                    "business", TOKEN
+                    Category.BUSINESS, TOKEN
                 )
                 for (i in response.articles) {
                     val newsDao = NewsDatabase.getDatabase(Constant.context!!).getNewsDao()
@@ -38,7 +39,7 @@ class NewsApiCallWorker(context: Context, params: WorkerParameters) : Worker(con
                             i.source?.name,
                             i.url,
                             i.urlToImage,
-                            "business",
+                            Category.BUSINESS,
                             false
                         )
                     )
@@ -48,7 +49,7 @@ class NewsApiCallWorker(context: Context, params: WorkerParameters) : Worker(con
             //        entertainment
             scope.launch {
                 val response = NewsApi.retrofitService.topHeadlinesBusinessNews(
-                    "entertainment", TOKEN
+                    Category.ENTERTAINMENT, TOKEN
                 )
                 for (i in response.articles) {
                     val newsDao = NewsDatabase.getDatabase(Constant.context!!).getNewsDao()
@@ -64,7 +65,7 @@ class NewsApiCallWorker(context: Context, params: WorkerParameters) : Worker(con
                             i.source?.name,
                             i.url,
                             i.urlToImage,
-                            "entertainment",
+                            Category.ENTERTAINMENT,
                             false
                         )
                     )
@@ -74,7 +75,7 @@ class NewsApiCallWorker(context: Context, params: WorkerParameters) : Worker(con
             //        general
             scope.launch {
                 val response = NewsApi.retrofitService.topHeadlinesBusinessNews(
-                    "general", TOKEN
+                    Category.GENERAL, TOKEN
                 )
                 for (i in response.articles) {
                     val newsDao = NewsDatabase.getDatabase(Constant.context!!).getNewsDao()
@@ -90,7 +91,7 @@ class NewsApiCallWorker(context: Context, params: WorkerParameters) : Worker(con
                             i.source?.name,
                             i.url,
                             i.urlToImage,
-                            "general",
+                            Category.GENERAL,
                             false
                         )
                     )
@@ -100,7 +101,7 @@ class NewsApiCallWorker(context: Context, params: WorkerParameters) : Worker(con
             //        health
             scope.launch {
                 val response = NewsApi.retrofitService.topHeadlinesBusinessNews(
-                    "health", TOKEN
+                    Category.HEALTH, TOKEN
                 )
                 for (i in response.articles) {
                     val newsDao = NewsDatabase.getDatabase(Constant.context!!).getNewsDao()
@@ -116,7 +117,7 @@ class NewsApiCallWorker(context: Context, params: WorkerParameters) : Worker(con
                             i.source?.name,
                             i.url,
                             i.urlToImage,
-                            "health",
+                            Category.HEALTH,
                             false
                         )
                     )
@@ -126,7 +127,7 @@ class NewsApiCallWorker(context: Context, params: WorkerParameters) : Worker(con
             //        science
             scope.launch {
                 val response = NewsApi.retrofitService.topHeadlinesBusinessNews(
-                    "science", TOKEN
+                    Category.SCIENCE, TOKEN
                 )
                 for (i in response.articles) {
                     val newsDao = NewsDatabase.getDatabase(Constant.context!!).getNewsDao()
@@ -142,7 +143,7 @@ class NewsApiCallWorker(context: Context, params: WorkerParameters) : Worker(con
                             i.source?.name,
                             i.url,
                             i.urlToImage,
-                            "science",
+                            Category.SCIENCE,
                             false
                         )
                     )
@@ -152,7 +153,7 @@ class NewsApiCallWorker(context: Context, params: WorkerParameters) : Worker(con
             //        sports
             scope.launch {
                 val response = NewsApi.retrofitService.topHeadlinesBusinessNews(
-                    "sports", TOKEN
+                    Category.SPORTS, TOKEN
                 )
                 for (i in response.articles) {
                     val newsDao = NewsDatabase.getDatabase(Constant.context!!).getNewsDao()
@@ -168,7 +169,7 @@ class NewsApiCallWorker(context: Context, params: WorkerParameters) : Worker(con
                             i.source?.name,
                             i.url,
                             i.urlToImage,
-                            "sports",
+                            Category.SPORTS,
                             false
                         )
                     )
@@ -178,7 +179,7 @@ class NewsApiCallWorker(context: Context, params: WorkerParameters) : Worker(con
             //        technology
             scope.launch {
                 val response = NewsApi.retrofitService.topHeadlinesBusinessNews(
-                    "technology", TOKEN
+                    Category.TECHNOLOGY, TOKEN
                 )
                 for (i in response.articles) {
                     val newsDao = NewsDatabase.getDatabase(Constant.context!!).getNewsDao()
@@ -194,7 +195,7 @@ class NewsApiCallWorker(context: Context, params: WorkerParameters) : Worker(con
                             i.source?.name,
                             i.url,
                             i.urlToImage,
-                            "technology",
+                            Category.TECHNOLOGY,
                             false
                         )
                     )

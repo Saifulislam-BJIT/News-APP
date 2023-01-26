@@ -1,6 +1,6 @@
 package com.saiful.newsapp.network
 
-import com.saiful.newsapp.Constant.Constant.Companion.BASE_URL
+import com.saiful.newsapp.constant.Constant.Companion.BASE_URL
 import com.saiful.newsapp.model.News
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory

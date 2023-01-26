@@ -5,7 +5,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.util.Log
 import com.google.android.material.snackbar.Snackbar
-import com.saiful.newsapp.Constant.Constant
+import com.saiful.newsapp.constant.Constant
 
 class Internet {
     companion object {

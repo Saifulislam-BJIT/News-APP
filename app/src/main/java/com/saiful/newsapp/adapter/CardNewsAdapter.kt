@@ -8,8 +8,8 @@ import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.saiful.newsapp.Constant.Constant
 import com.saiful.newsapp.R
+import com.saiful.newsapp.constant.Constant
 import com.saiful.newsapp.database.NewsArticle
 import com.saiful.newsapp.viewmodel.NewsViewModel
 

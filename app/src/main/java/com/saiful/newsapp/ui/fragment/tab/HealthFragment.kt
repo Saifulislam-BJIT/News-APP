@@ -11,9 +11,10 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import com.saiful.newsapp.R
 import com.saiful.newsapp.adapter.CardNewsAdapter
+import com.saiful.newsapp.constant.Category
+import com.saiful.newsapp.constant.Constant
 import com.saiful.newsapp.database.NewsArticle
 import com.saiful.newsapp.databinding.FragmentHealthBinding
-import com.saiful.newsapp.Constant.Constant
 import com.saiful.newsapp.viewmodel.NewsViewModel
 
 class HealthFragment : Fragment() {
@@ -79,7 +80,7 @@ class HealthFragment : Fragment() {
     @SuppressLint("NotifyDataSetChanged")
     override fun onResume() {
         super.onResume()
-        Constant.category = "health"
+        Constant.category = Category.HEALTH
         viewModel.readAllNewsFromLocal()
 
         val recycler = binding.cardNewsRecycler
