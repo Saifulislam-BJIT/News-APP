@@ -84,6 +84,10 @@ class BusinessFragment : Fragment() {
         Constant.category = Category.BUSINESS
         viewModel.readAllNewsFromLocal()
 
+//        val adapterViewState = recyclerView.layoutManager?.onSaveInstanceState()
+//        recyclerView.layoutManager?.onRestoreInstanceState(adapterViewState)
+//        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
         val recycler = binding.cardNewsRecycler
         recycler.setHasFixedSize(true)
         viewModel.readAllNews.observe(viewLifecycleOwner) {
@@ -92,6 +96,8 @@ class BusinessFragment : Fragment() {
                 viewModel.loadNewsFromRemote()
                 recycler.adapter?.notifyDataSetChanged()
             }
+            val adapterViewState = recycler.layoutManager?.onSaveInstanceState()
+            recycler.layoutManager?.onRestoreInstanceState(adapterViewState)
             recycler.adapter = CardNewsAdapter(it, viewModel)
         }
 

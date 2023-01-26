@@ -49,6 +49,8 @@ class BookmarkFragment : Fragment() {
         recycler.setHasFixedSize(true)
         viewModel.readAllNews.observe(viewLifecycleOwner) {
 //            Log.d("TAG", "onResume:  ${it.size}")
+            val adapterViewState = recycler.layoutManager?.onSaveInstanceState()
+            recycler.layoutManager?.onRestoreInstanceState(adapterViewState)
             recycler.adapter = CardNewsAdapter(it, viewModel)
         }
     }

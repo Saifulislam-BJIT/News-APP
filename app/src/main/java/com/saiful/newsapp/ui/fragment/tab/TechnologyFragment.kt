@@ -92,6 +92,8 @@ class TechnologyFragment : Fragment() {
                 viewModel.loadNewsFromRemote()
                 recycler.adapter?.notifyDataSetChanged()
             }
+            val adapterViewState = recycler.layoutManager?.onSaveInstanceState()
+            recycler.layoutManager?.onRestoreInstanceState(adapterViewState)
             recycler.adapter = CardNewsAdapter(it, viewModel)
         }
 
