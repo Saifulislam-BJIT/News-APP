@@ -1,5 +1,6 @@
 package com.saiful.newsapp.network
 
+import com.saiful.newsapp.Constant.Constant.Companion.BASE_URL
 import com.saiful.newsapp.model.News
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -8,7 +9,6 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-private const val BASE_URL = "https://newsapi.org/v2/"
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()

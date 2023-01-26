@@ -1,12 +1,14 @@
-package com.saiful.newsapp.global
+package com.saiful.newsapp.Constant
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.view.View
 import com.saiful.newsapp.database.NewsArticle
 
-class Global {
+class Constant {
     companion object {
+        const val BASE_URL = "https://newsapi.org/v2/"
+        const val TOKEN = "b9aec1e5c45b4c27b89627110fe05e45"
         var category: String? = null
         var newsArticle: NewsArticle? = null
         @SuppressLint("StaticFieldLeak")

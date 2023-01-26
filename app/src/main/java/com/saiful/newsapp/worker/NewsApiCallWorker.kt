@@ -4,9 +4,10 @@ import android.content.Context
 import android.util.Log
 import androidx.work.Worker
 import androidx.work.WorkerParameters
+import com.saiful.newsapp.Constant.Constant
+import com.saiful.newsapp.Constant.Constant.Companion.TOKEN
 import com.saiful.newsapp.database.NewsArticle
 import com.saiful.newsapp.database.NewsDatabase
-import com.saiful.newsapp.global.Global
 import com.saiful.newsapp.network.NewsApi
 import com.saiful.newsapp.repository.NewsRepository
 import kotlinx.coroutines.CoroutineScope
@@ -21,11 +22,10 @@ class NewsApiCallWorker(context: Context, params: WorkerParameters) : Worker(con
 //        Business
             scope.launch {
                 val response = NewsApi.retrofitService.topHeadlinesBusinessNews(
-                    "business",
-                    "9d68e0d1f113454cb2e1e6ad604ac096"
+                    "business", TOKEN
                 )
                 for (i in response.articles) {
-                    val newsDao = NewsDatabase.getDatabase(Global.context!!).getNewsDao()
+                    val newsDao = NewsDatabase.getDatabase(Constant.context!!).getNewsDao()
                     val repository = NewsRepository(newsDao)
                     repository.addNews(
                         NewsArticle(
@@ -48,11 +48,10 @@ class NewsApiCallWorker(context: Context, params: WorkerParameters) : Worker(con
             //        entertainment
             scope.launch {
                 val response = NewsApi.retrofitService.topHeadlinesBusinessNews(
-                    "entertainment",
-                    "9d68e0d1f113454cb2e1e6ad604ac096"
+                    "entertainment", TOKEN
                 )
                 for (i in response.articles) {
-                    val newsDao = NewsDatabase.getDatabase(Global.context!!).getNewsDao()
+                    val newsDao = NewsDatabase.getDatabase(Constant.context!!).getNewsDao()
                     val repository = NewsRepository(newsDao)
                     repository.addNews(
                         NewsArticle(
@@ -75,11 +74,10 @@ class NewsApiCallWorker(context: Context, params: WorkerParameters) : Worker(con
             //        general
             scope.launch {
                 val response = NewsApi.retrofitService.topHeadlinesBusinessNews(
-                    "general",
-                    "9d68e0d1f113454cb2e1e6ad604ac096"
+                    "general", TOKEN
                 )
                 for (i in response.articles) {
-                    val newsDao = NewsDatabase.getDatabase(Global.context!!).getNewsDao()
+                    val newsDao = NewsDatabase.getDatabase(Constant.context!!).getNewsDao()
                     val repository = NewsRepository(newsDao)
                     repository.addNews(
                         NewsArticle(
@@ -102,11 +100,10 @@ class NewsApiCallWorker(context: Context, params: WorkerParameters) : Worker(con
             //        health
             scope.launch {
                 val response = NewsApi.retrofitService.topHeadlinesBusinessNews(
-                    "health",
-                    "9d68e0d1f113454cb2e1e6ad604ac096"
+                    "health", TOKEN
                 )
                 for (i in response.articles) {
-                    val newsDao = NewsDatabase.getDatabase(Global.context!!).getNewsDao()
+                    val newsDao = NewsDatabase.getDatabase(Constant.context!!).getNewsDao()
                     val repository = NewsRepository(newsDao)
                     repository.addNews(
                         NewsArticle(
@@ -129,11 +126,10 @@ class NewsApiCallWorker(context: Context, params: WorkerParameters) : Worker(con
             //        science
             scope.launch {
                 val response = NewsApi.retrofitService.topHeadlinesBusinessNews(
-                    "science",
-                    "9d68e0d1f113454cb2e1e6ad604ac096"
+                    "science", TOKEN
                 )
                 for (i in response.articles) {
-                    val newsDao = NewsDatabase.getDatabase(Global.context!!).getNewsDao()
+                    val newsDao = NewsDatabase.getDatabase(Constant.context!!).getNewsDao()
                     val repository = NewsRepository(newsDao)
                     repository.addNews(
                         NewsArticle(
@@ -156,11 +152,10 @@ class NewsApiCallWorker(context: Context, params: WorkerParameters) : Worker(con
             //        sports
             scope.launch {
                 val response = NewsApi.retrofitService.topHeadlinesBusinessNews(
-                    "sports",
-                    "9d68e0d1f113454cb2e1e6ad604ac096"
+                    "sports", TOKEN
                 )
                 for (i in response.articles) {
-                    val newsDao = NewsDatabase.getDatabase(Global.context!!).getNewsDao()
+                    val newsDao = NewsDatabase.getDatabase(Constant.context!!).getNewsDao()
                     val repository = NewsRepository(newsDao)
                     repository.addNews(
                         NewsArticle(
@@ -183,11 +178,10 @@ class NewsApiCallWorker(context: Context, params: WorkerParameters) : Worker(con
             //        technology
             scope.launch {
                 val response = NewsApi.retrofitService.topHeadlinesBusinessNews(
-                    "technology",
-                    "9d68e0d1f113454cb2e1e6ad604ac096"
+                    "technology", TOKEN
                 )
                 for (i in response.articles) {
-                    val newsDao = NewsDatabase.getDatabase(Global.context!!).getNewsDao()
+                    val newsDao = NewsDatabase.getDatabase(Constant.context!!).getNewsDao()
                     val repository = NewsRepository(newsDao)
                     repository.addNews(
                         NewsArticle(

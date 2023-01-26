@@ -5,12 +5,12 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.util.Log
 import com.google.android.material.snackbar.Snackbar
-import com.saiful.newsapp.global.Global
+import com.saiful.newsapp.Constant.Constant
 
 class Internet {
     companion object {
         fun isOnline(): Boolean {
-            val context = Global.context!!
+            val context = Constant.context!!
             val connectivityManager =
                 context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
             val capabilities =
@@ -27,7 +27,7 @@ class Internet {
                     return true
                 }
             }
-            Global.contextView?.let {
+            Constant.contextView?.let {
                 Snackbar.make(
                     it,
                     "Internet is not available",

@@ -13,7 +13,7 @@ import androidx.work.PeriodicWorkRequest
 import androidx.work.WorkManager
 import com.saiful.newsapp.R
 import com.saiful.newsapp.databinding.ActivityMainBinding
-import com.saiful.newsapp.global.Global
+import com.saiful.newsapp.Constant.Constant
 import com.saiful.newsapp.worker.NewsApiCallWorker
 import java.util.concurrent.TimeUnit
 
@@ -28,9 +28,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 //        set global context view
-        Global.contextView = binding.navHostFragment
+        Constant.contextView = binding.navHostFragment
 //        set global context
-        Global.context = applicationContext
+        Constant.context = applicationContext
 
 //        navigation
         val navHostFragment = supportFragmentManager

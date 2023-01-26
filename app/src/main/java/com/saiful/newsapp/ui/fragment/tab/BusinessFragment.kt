@@ -9,11 +9,11 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import com.saiful.newsapp.Constant.Constant
 import com.saiful.newsapp.R
 import com.saiful.newsapp.adapter.CardNewsAdapter
 import com.saiful.newsapp.database.NewsArticle
 import com.saiful.newsapp.databinding.FragmentBusinessBinding
-import com.saiful.newsapp.global.Global
 import com.saiful.newsapp.viewmodel.NewsViewModel
 
 class BusinessFragment : Fragment() {
@@ -80,7 +80,7 @@ class BusinessFragment : Fragment() {
     @SuppressLint("NotifyDataSetChanged")
     override fun onResume() {
         super.onResume()
-        Global.category = "business"
+        Constant.category = "business"
         viewModel.readAllNewsFromLocal()
 
         val recycler = binding.cardNewsRecycler

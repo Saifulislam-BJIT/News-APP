@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.saiful.newsapp.R
 import com.saiful.newsapp.databinding.FragmentNewsArticleBinding
-import com.saiful.newsapp.global.Global
+import com.saiful.newsapp.Constant.Constant
 
 class NewsArticleFragment : Fragment() {
     private var _binding: FragmentNewsArticleBinding? = null
@@ -35,22 +35,22 @@ class NewsArticleFragment : Fragment() {
 
 //        Log.d("TAG", "onViewCreated: ${Global.newsArticle?.url}")
         binding.goToWeb.setOnClickListener {
-            val url = Global.newsArticle?.url ?: "https://www.google.com"
+            val url = Constant.newsArticle?.url ?: "https://www.google.com"
             val action = NewsArticleFragmentDirections.actionNewsArticleToWebView(url)
             findNavController().navigate(action)
         }
 
-        binding.newsTitle.text = Global.newsArticle?.title ?: "UnTitle"
-        binding.newsAuthor.text = getString(R.string.author_name, Global.newsArticle?.author)
+        binding.newsTitle.text = Constant.newsArticle?.title ?: "UnTitle"
+        binding.newsAuthor.text = getString(R.string.author_name, Constant.newsArticle?.author)
         binding.newsPublishedDate.text =
-            Global.newsArticle?.publishedAt?.substring(0, 10) ?: "----:--:--"
+            Constant.newsArticle?.publishedAt?.substring(0, 10) ?: "----:--:--"
         binding.newsDescription.text =
-            Global.newsArticle?.description ?: Global.newsArticle?.content ?: "----"
-        binding.newsSource.text = getString(R.string.source_name, Global.newsArticle?.sourceName)
+            Constant.newsArticle?.description ?: Constant.newsArticle?.content ?: "----"
+        binding.newsSource.text = getString(R.string.source_name, Constant.newsArticle?.sourceName)
 
         Glide
             .with(requireContext())
-            .load(Global.newsArticle?.urlToImage)
+            .load(Constant.newsArticle?.urlToImage)
             .centerCrop()
             .thumbnail(
                 Glide.with(requireContext())

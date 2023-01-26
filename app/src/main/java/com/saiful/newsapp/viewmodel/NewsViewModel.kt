@@ -5,10 +5,10 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import com.saiful.newsapp.Constant.Constant
 import com.saiful.newsapp.R
 import com.saiful.newsapp.database.NewsArticle
 import com.saiful.newsapp.database.NewsDatabase
-import com.saiful.newsapp.global.Global
 import com.saiful.newsapp.network.NewsApi
 import com.saiful.newsapp.repository.NewsRepository
 import com.saiful.newsapp.utils.Internet
@@ -29,7 +29,7 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
     fun readAllNewsFromLocal() {
         with(repository) {
 //            Log.d("TAG", "readAllNewsFromLocal: ${Global.category}")
-            readAllNews = when (Global.category) {
+            readAllNews = when (Constant.category) {
                 "business" -> readAllNews("business")
                 "entertainment" -> readAllNews("entertainment")
                 "general" -> readAllNews("general")
@@ -47,7 +47,7 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
             viewModelScope.launch {
                 try {
                     val response = NewsApi.retrofitService.topHeadlinesNews(
-                        Global.category!!,
+                        Constant.category!!,
                         getApplication<Application>().resources.getString(R.string.api_key)
                     )
                     response.articles.map {
@@ -62,7 +62,7 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
                                 it.source?.name,
                                 it.url,
                                 it.urlToImage,
-                                Global.category
+                                Constant.category
                             )
                         )
                     }
